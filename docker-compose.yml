@@ -1,0 +1,23 @@
+services:
+
+  db:
+    image: postgres:latest
+    container_name: postgresql_db
+    restart: always
+    shm_size: 128mb
+    environment:
+      POSTGRES_USER: YozhkinMaks
+      POSTGRES_PASSWORD: Yozhkin24012003
+      POSTGRES_DB: RepairLocDepot
+    ports:
+      - 5432:5432
+    volumes:
+      - ./datadb/:/var/lib/postgresql/data
+  adminer:
+    image: adminer:latest
+    container_name: adminer
+    restart: always
+    depends_on:
+      - db
+    ports:
+      - 8080:8080
