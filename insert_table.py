@@ -10,6 +10,7 @@ def create_connection(db_name, db_user,db_password, db_host, db_port):
             password = db_password,
             host = db_host,
             port = db_port,
+            options="-c client_encoding=UTF8"
         )
         print("Підключення до бази даних PostgreSQL виконано успішно!")
     except OperationalError as e:

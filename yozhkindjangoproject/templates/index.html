@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Лабораторна робота №8</title>
+    <style>
+        hr {
+           border: 1px solid gray;
+           width: 100%
+        }
+        table {
+           width: 100%;
+           table-layout: fixed;
+        }
+        caption {
+           text-decoration: underline;
+        }
+        td {
+           border: 1px solid black;
+           text-align: left;
+           padding: 10px 0 10px 5px;
+        }
+        th {
+           text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>djangoapp</h1>
+    <p style = "color:DarkRed"><i>ПІБ студента: Йожкін Максим Русланович</i></p>
+    <p style = "color:DarkRed"><i>Група: КН-23004бСК</i></p>
+    <p><strong>Дані таблиць бази даних "RepairLocDepot":</strong></p>
+    <hr>
+    <table>
+        <caption><h2>Бригади</h2></caption>
+        <thead>
+            <tr>
+                <th>Номер бригади</th>
+                <th>Номер телефону</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for data in brigades %}
+                <tr>
+                    <td>{{ data.number_brigade }}</td>
+                    <td>{{ data.number_phone }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <hr>
+    <table>
+        <caption><h2>Працівники</h2></caption>
+        <thead>
+            <tr>
+                <th>Код працівника</th>
+                <th>Прізвище</th>
+                <th>Ім'я</th>
+                <th>По батькові</th>
+                <th>Телефон бригади</th>
+                <th>Посада бригадира</th>
+                <th>Дата народження</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for data in workers %}
+                <tr>
+                    <td>{{data.code_worker}}</td>
+                    <td>{{data.name}}</td>
+                    <td>{{data.surname}}</td>
+                    <td>{{data.patronymic}}</td>
+                    <td>{{data.number_brigade.number_phone}}</td>
+                    <td>{{data.brigadier}}</td>
+                    <td>{{data.date_birth}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <hr>
+    <table>
+        <caption><h2>Локомотиви</h2></caption>
+        <thead>
+            <tr>
+                <th>Реєстраційний номер</th>
+                <th>Зареєстроване ДЕПО</th>
+                <th>Тип</th>
+                <th>Рік випуску</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for data in locomotives %}
+                <tr>
+                    <td>{{data.reg_number}}</td>
+                    <td>{{data.reg_depo}}</td>
+                    <td>{{data.type}}</td>
+                    <td>{{data.year_prod}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <hr>
+    <table>
+        <caption><h2>Ремонти</h2></caption>
+        <thead>
+            <tr>
+                <th>Код</th>
+                <th>Тип локомотиву</th>
+                <th>Тип</th>
+                <th>Дата початку</th>
+                <th>Кількість потрібних днів</th>
+                <th>Ціна за один день</th>
+                <th>Номер телефону бригади</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for data in repairs %}
+                <tr>
+                    <td>{{data.code}}</td>
+                    <td>{{data.reg_num_loc.type}}</td>
+                    <td>{{data.type}}</td>
+                    <td>{{data.date_start}}</td>
+                    <td>{{data.needed_days}}</td>
+                    <td>{{data.cost_one_day}}</td>
+                    <td>{{data.number_brigade.number_phone}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <hr>
+</body>
+</html>
